@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenie - Your Sustainability Assistant</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>Greenie</h1>
+            </div>
+            <p class="tagline">Your friendly sustainability assistant</p>
+        </header>
+        
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-content">
+                        <p>Hi there! I'm Greenie, your sustainability assistant. Ask me anything about eco-friendly practices, reducing your carbon footprint, or living more sustainably!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Ask something about sustainability...">
+                <button id="sendButton">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Powered by Gemini AI | <span class="eco-stats">Helping the planet one chat at a time</span></p>
+        </footer>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>

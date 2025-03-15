@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Swap Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: url('pic.jpg') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #ffffff;
+      overflow: hidden;
+    }
+    .scan-container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 60px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.7), 0 0 50px rgba(0, 255, 0, 0.5);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-in-out;
+      width: 500px;
+      max-width: 90%;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .title {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.9);
+      animation: glow 2s infinite alternate, float 3s ease-in-out infinite;
+    }
+    .scan-text {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+      animation: glow 2s infinite alternate, float 3s ease-in-out infinite;
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.7);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(0, 255, 0, 0.9), 0 0 30px rgba(0, 255, 0, 0.7);
+      }
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    .scan-button {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.7), 0 0 25px rgba(0, 255, 0, 0.5);
+      animation: pulse 2s infinite;
+    }
+    .scan-button:hover {
+      background-color: #84d888;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.9), 0 0 35px rgba(0, 255, 0, 0.7);
+    }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scan-container">
+    <div class="title">ECOSWAP</div>
+    <p class="scan-text">Scan Me</p>
+    <button class="scan-button" onclick="startScan()">Scan</button>
+  </div>
+
+  <script>
+    function startScan() {
+      // Redirect to the specified URL
+      window.location.href = "http://127.0.0.1:5500/qr.html";
+    }
+  </script>
+</body>
+</html>

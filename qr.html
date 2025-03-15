@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #4A00E0, #8E2DE2);
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #qr-reader {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            border: 2px dashed white;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            background: white;
+            color: black;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+        #restart-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #4A00E0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #restart-button:hover {
+            background: #8E2DE2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scan a QR Code</h1>
+    <div id="qr-reader"></div>
+    <p id="result">Scanning...</p>
+    <button id="restart-button" style="display: none;">Restart Scanner</button>
+
+    <script>
+        let qrReader;
+
+        function startQRScanner() {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                alert("Camera access is not supported on this browser.");
+                return;
+            }
+
+            qrReader = new Html5Qrcode("qr-reader");
+
+            const qrboxSize = Math.min(window.innerWidth * 0.6, 400); // Dynamic QR box size
+
+            qrReader.start(
+                { facingMode: "environment" }, // Use back camera
+                { fps: 10, qrbox: qrboxSize },
+                (decodedText) => {
+                    // Redirect to the scanned URL
+                    window.location.href = decodedText;
+                },
+                (errorMessage) => {
+                    console.error("Scan error: ", errorMessage);
+                }
+            ).catch(err => {
+                console.error("Camera error: ", err);
+                alert("Failed to start camera. Please ensure camera access is allowed.");
+            });
+        }
+
+        function restartScanner() {
+            if (qrReader) {
+                qrReader.stop().then(() => {
+                    document.getElementById("restart-button").style.display = "none"; // Hide restart button
+                    document.getElementById("result").innerText = "Scanning...";
+                    startQRScanner();
+                }).catch(err => {
+                    console.error("Failed to stop scanner: ", err);
+                });
+            }
+        }
+
+        // Add event listener for the restart button
+        document.getElementById("restart-button").addEventListener("click", restartScanner);
+
+        // Delay QR Scanner startup for proper rendering
+        setTimeout(startQRScanner, 1000);
+    </script>
+</body>
+</html>
