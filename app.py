@@ -4,7 +4,7 @@ import google.generativeai as genai
 app = Flask(__name__)
 
 # Get API key from Google AI Studio
-GEMINI_API_KEY = "AIzaSyAvsIrYJ09ICn7pZHGn8M84HyhiDEj2BmA"
+GEMINI_API_KEY = ""
 genai.configure(api_key=GEMINI_API_KEY)
 
 @app.route('/')
